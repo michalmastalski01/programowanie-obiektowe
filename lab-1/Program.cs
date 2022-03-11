@@ -17,6 +17,9 @@ namespace lab_1
             Console.WriteLine(result.Value);
             Console.WriteLine(money);
             Console.WriteLine(person);
+            Console.WriteLine("Parse:");
+            Money one = Money.ParseValue("15,54", Currency.PLN);
+            Console.WriteLine(one);
 
             IEquatable<Money> ie = money;
 
@@ -127,6 +130,17 @@ namespace lab_1
             if(value >= 0)
             {
                 return new Money(value, currency);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+        public static Money ParseValue(string valueStr, Currency currency)
+        {
+            if(decimal.Parse(valueStr) >= 0)
+            {
+                return new Money(decimal.Parse(valueStr), currency);
             }
             else
             {
